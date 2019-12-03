@@ -11,7 +11,10 @@
 |
 */
 
+use App\Events\TaskStatusUpdated;
+
 Route::get('/', function () {
+    TaskStatusUpdated::dispatch();
     return view('welcome');
 });
 

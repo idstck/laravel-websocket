@@ -13,8 +13,19 @@
 
 use App\Events\TaskStatusUpdated;
 
+class Task
+{
+    public $id;
+
+    public function __construct($id)
+    {
+        $this->id = $id;
+    }
+}
+
+
 Route::get('/', function () {
-    TaskStatusUpdated::dispatch();
+    TaskStatusUpdated::dispatch(new Task(1));
     return view('welcome');
 });
 

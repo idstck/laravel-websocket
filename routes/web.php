@@ -25,8 +25,11 @@ class Task
 
 
 Route::get('/', function () {
-    TaskStatusUpdated::dispatch(new Task(1));
     return view('welcome');
+});
+
+Route::get('/update', function () {
+    TaskStatusUpdated::dispatch(new Task(1));
 });
 
 Auth::routes();

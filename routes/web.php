@@ -11,25 +11,21 @@
 |
 */
 
+use App\Task;
 use App\Events\TaskStatusUpdated;
-
-class Task
-{
-    public $id;
-
-    public function __construct($id)
-    {
-        $this->id = $id;
-    }
-}
-
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/update', function () {
-    TaskStatusUpdated::dispatch(new Task(1));
+Route::get('/tasks', function () {
+    return Task::latest()->pluck('body');
+});
+
+Route::post('/tasks', function () {
+    $task = Task::forceCreate(request(['body']));
+
+    event(new TaskStatusUpdated($task));
 });
 
 Auth::routes();

@@ -39,8 +39,3 @@ window.Echo = new Echo({
     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
     encrypted: true
 });
-
-window.Echo.channel('tasks').listen('TaskStatusUpdated', e => {
-    console.log('Tasks ' + e.task.id + ' status has been updated.');
-    console.log(e);
-});
